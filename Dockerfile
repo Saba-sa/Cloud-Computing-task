@@ -1,20 +1,10 @@
-# Use a base image
-FROM node:14
+FROM nginx:alpine
 
-# Set the working directory
-WORKDIR /app
+# Copy all files to the nginx html directory
+COPY . /usr/share/nginx/html
 
-# Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json ./
+# Expose the default Nginx port
+EXPOSE 80
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of your application code
-COPY . .
-
-# Expose the necessary port (if needed)
-EXPOSE 5000
-
-# Command to run your app
-CMD ["npm", "start"]
+# Default CMD to run Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]

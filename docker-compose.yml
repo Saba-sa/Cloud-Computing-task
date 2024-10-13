@@ -1,7 +1,8 @@
+version: '3.8'
 services:
   web:
+    image: myapp
     build: .
     ports:
-      - "8000:5000"
-  redis:
-    image: "redis:alpine"
+      - "8080:80"
+    restart: always
